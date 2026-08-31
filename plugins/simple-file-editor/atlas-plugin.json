@@ -1,0 +1,14 @@
+{
+  "id": "atlas.demo.simple-file-editor",
+  "name": "ATLAS Simple File Editor",
+  "version": "0.1.0",
+  "description": "Demo plugin for testing ATLAS repository install, update and removal.",
+  "dependencies": [],
+  "extensionPoints": [
+    "atlas.plugin.demo"
+  ],
+  "provides": [
+    "atlas.plugin.demo",
+    "homeassistant.file-editor"
+  ]
+}

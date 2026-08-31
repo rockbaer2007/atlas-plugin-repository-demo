@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">ATLAS Simple File Editor preview</title>
+  <desc id="desc">Dark ATLAS styled file editor preview.</desc>
+  <rect width="960" height="540" fill="#0f1417"/>
+  <rect x="36" y="36" width="888" height="468" rx="18" fill="#171f23" stroke="#2f4046" stroke-width="2"/>
+  <rect x="60" y="70" width="260" height="396" rx="10" fill="#10191d" stroke="#40535b"/>
+  <rect x="344" y="70" width="520" height="396" rx="10" fill="#0b1215" stroke="#40535b"/>
+  <text x="84" y="112" fill="#2dd4bf" font-family="Arial, sans-serif" font-size="24" font-weight="700">config/</text>
+  <text x="84" y="160" fill="#edf7f8" font-family="Arial, sans-serif" font-size="22">configuration.yaml</text>
+  <text x="84" y="206" fill="#a5b8bf" font-family="Arial, sans-serif" font-size="22">automations.yaml</text>
+  <text x="84" y="252" fill="#a5b8bf" font-family="Arial, sans-serif" font-size="22">scripts.yaml</text>
+  <text x="376" y="118" fill="#f59e0b" font-family="Arial, sans-serif" font-size="22" font-weight="700">ATLAS Simple File Editor</text>
+  <text x="376" y="174" fill="#7ee6c9" font-family="Consolas, monospace" font-size="20">homeassistant:</text>
+  <text x="404" y="214" fill="#edf7f8" font-family="Consolas, monospace" font-size="20">name: Smart Home</text>
+  <text x="404" y="254" fill="#edf7f8" font-family="Consolas, monospace" font-size="20">country: DE</text>
+  <text x="376" y="334" fill="#7ee6c9" font-family="Consolas, monospace" font-size="20">atlas:</text>
+  <text x="404" y="374" fill="#edf7f8" font-family="Consolas, monospace" font-size="20">mode: preview</text>
+  <rect x="734" y="424" width="96" height="34" rx="17" fill="#0f766e"/>
+  <text x="762" y="447" fill="#ecfeff" font-family="Arial, sans-serif" font-size="16" font-weight="700">Save</text>
+</svg>

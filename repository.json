@@ -1,0 +1,28 @@
+{
+  "kind": "atlas.plugin.repository",
+  "name": "ATLAS Plugin Demo Repository",
+  "version": "1",
+  "homepage": "https://github.com/rockbaer2007/atlas-plugin-repository-demo",
+  "maintainer": "UGSo Software",
+  "plugins": [
+    {
+      "id": "atlas.demo.simple-file-editor",
+      "name": "ATLAS Simple File Editor",
+      "version": "0.1.0",
+      "description": "Demo plugin for testing ATLAS repository install, update and removal.",
+      "icon": "./plugins/simple-file-editor/icon.svg",
+      "preview": "./plugins/simple-file-editor/preview.svg",
+      "package": "./plugins/simple-file-editor/simple-file-editor.atlas-plugin.json",
+      "manifest": "./plugins/simple-file-editor/atlas-plugin.json",
+      "capabilities": [
+        "atlas.plugin.demo",
+        "homeassistant.file-editor"
+      ],
+      "compatibility": {
+        "atlas": ">=0.1.31",
+        "host": "administration-local",
+        "homeAssistant": ">=2026.8"
+      }
+    }
+  ]
+}

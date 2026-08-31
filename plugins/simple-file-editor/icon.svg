@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">ATLAS Simple File Editor icon</title>
+  <desc id="desc">ATLAS colored editor document icon.</desc>
+  <rect width="256" height="256" rx="48" fill="#082f3a"/>
+  <path d="M74 42h82l32 32v140H74z" fill="#ecfeff"/>
+  <path d="M156 42v34h32" fill="#bae6fd"/>
+  <path d="M94 104h68M94 128h68M94 152h42" fill="none" stroke="#0f766e" stroke-width="12" stroke-linecap="round"/>
+  <path d="M48 214 128 34l80 180h-35l-14-34H97l-14 34z" fill="none" stroke="#f59e0b" stroke-width="12" stroke-linejoin="round"/>
+</svg>

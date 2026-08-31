@@ -1,0 +1,25 @@
+{
+  "kind": "atlas.runtime.plugin.install-package",
+  "filename": "simple-file-editor.atlas-plugin.json",
+  "plugin": {
+    "id": "atlas.demo.simple-file-editor",
+    "name": "ATLAS Simple File Editor",
+    "version": "0.1.0",
+    "description": "Demo plugin for testing ATLAS repository install, update and removal.",
+    "dependencies": [],
+    "extensionPoints": [
+      "atlas.plugin.demo"
+    ],
+    "provides": [
+      "atlas.plugin.demo",
+      "homeassistant.file-editor"
+    ]
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "mediaType": "text/markdown",
+      "content": "# ATLAS Simple File Editor\n\nDemo package for ATLAS repository install, update and removal tests.\n\nThis package is metadata-only in the first Administration preview. It does not execute plugin code yet.\n"
+    }
+  ]
+}
