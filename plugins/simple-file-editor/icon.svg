@@ -1,9 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
-  <title id="title">ATLAS Simple File Editor icon</title>
-  <desc id="desc">ATLAS colored editor document icon.</desc>
-  <rect width="256" height="256" rx="48" fill="#082f3a"/>
-  <path d="M74 42h82l32 32v140H74z" fill="#ecfeff"/>
-  <path d="M156 42v34h32" fill="#bae6fd"/>
-  <path d="M94 104h68M94 128h68M94 152h42" fill="none" stroke="#0f766e" stroke-width="12" stroke-linecap="round"/>
-  <path d="M48 214 128 34l80 180h-35l-14-34H97l-14 34z" fill="none" stroke="#f59e0b" stroke-width="12" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="ATLAS Simple File Editor">
+  <rect width="128" height="128" rx="24" fill="#102a26"/>
+  <path d="M34 18h43l21 21v66a9 9 0 0 1-9 9H34a9 9 0 0 1-9-9V27a9 9 0 0 1 9-9Z" fill="#f3fbfd"/>
+  <path d="M77 18v20a7 7 0 0 0 7 7h14L77 18Z" fill="#bdeaf2"/>
+  <rect x="39" y="52" width="34" height="8" rx="4" fill="#2dd4bf"/>
+  <rect x="39" y="69" width="46" height="7" rx="3.5" fill="#7fa9b5"/>
+  <rect x="39" y="85" width="36" height="7" rx="3.5" fill="#7fa9b5"/>
+  <circle cx="91" cy="91" r="22" fill="#08303a" stroke="#f59e0b" stroke-width="4"/>
+  <path d="M80 101 91 78l12 23h-9l-2-5h-4l-2 5h-6Z" fill="#2dd4bf"/>
 </svg>

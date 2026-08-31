@@ -6,7 +6,7 @@ This plugin is intentionally metadata-only for the first repository tests. It is
 used to verify:
 
 - repository loading
-- icon and preview rendering
+- icon, logo and preview rendering
 - package installation
 - version update detection
 - package removal

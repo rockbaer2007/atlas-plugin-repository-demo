@@ -19,6 +19,7 @@ plugins/
     atlas-plugin.json
     simple-file-editor.atlas-plugin.json
     icon.svg
+    logo.svg
     preview.svg
     README.md
 ```
@@ -28,9 +29,15 @@ plugins/
 This repository is the first public reference for:
 
 - the `repository.json` catalog format
-- plugin icon and preview metadata
+- plugin icon, logo and preview metadata
 - package install/update/remove testing
 - a future reusable ATLAS plugin template
 
 The demo plugin is metadata-only in the first Administration preview and does
 not execute plugin code yet.
+
+## Asset Convention
+
+- `icon.svg`: compact square plugin icon for lists and small status rows.
+- `logo.svg`: wide ATLAS-branded plugin logo for Hub/Admin cards.
+- `preview.svg`: 16:9 plugin preview or screenshot.

@@ -11,6 +11,7 @@
       "version": "0.1.0",
       "description": "Demo plugin for testing ATLAS repository install, update and removal.",
       "icon": "./plugins/simple-file-editor/icon.svg",
+      "logo": "./plugins/simple-file-editor/logo.svg",
       "preview": "./plugins/simple-file-editor/preview.svg",
       "package": "./plugins/simple-file-editor/simple-file-editor.atlas-plugin.json",
       "manifest": "./plugins/simple-file-editor/atlas-plugin.json",

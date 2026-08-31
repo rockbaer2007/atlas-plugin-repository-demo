@@ -3,6 +3,9 @@
   "name": "ATLAS Simple File Editor",
   "version": "0.1.0",
   "description": "Demo plugin for testing ATLAS repository install, update and removal.",
+  "icon": "icon.svg",
+  "logo": "logo.svg",
+  "preview": "preview.svg",
   "dependencies": [],
   "extensionPoints": [
     "atlas.plugin.demo"
