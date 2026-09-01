@@ -81,7 +81,8 @@
       }
 
       .actions,
-      .copy-row {
+      .copy-row,
+      .ha-target {
         display: grid;
         gap: 8px;
       }
@@ -138,6 +139,24 @@
         font-size: 0.92rem;
       }
 
+      .preset-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 8px;
+      }
+
+      .preset {
+        border-color: var(--border);
+        background: var(--panel);
+        color: var(--text);
+      }
+
+      .preset[aria-pressed="true"] {
+        border-color: var(--accent);
+        background: color-mix(in srgb, var(--accent), var(--panel) 78%);
+        color: var(--text);
+      }
+
       .notice {
         border-left: 4px solid var(--warn);
         padding-left: 12px;
@@ -184,9 +203,28 @@
           <a class="button secondary" href="https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main/repository.json">
             repository.json oeffnen
           </a>
-          <a class="button secondary" href="https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Frockbaer2007%2Fatlas-plugin-repository-demo">
-            Optional in Home Assistant oeffnen
-          </a>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Home Assistant Ziel</h2>
+        <p>
+          Waehle die passende Home-Assistant-Adresse aus oder passe sie manuell an.
+        </p>
+        <div class="ha-target">
+          <div class="preset-row" role="group" aria-label="Home Assistant URL Vorgaben">
+            <button class="preset" type="button" data-ha-url="http://homeassistant.local" aria-pressed="true">
+              HA 2026.8+ / Port 80
+            </button>
+            <button class="preset" type="button" data-ha-url="http://homeassistant.local:8123" aria-pressed="false">
+              Klassisch / Port 8123
+            </button>
+          </div>
+          <input id="home-assistant-url" class="url-box" value="http://homeassistant.local">
+          <button id="open-home-assistant" class="secondary" type="button">
+            In Home Assistant oeffnen
+          </button>
+          <output id="home-assistant-status" class="status" aria-live="polite"></output>
         </div>
       </section>
 
@@ -217,6 +255,10 @@
       const repositoryUrl = document.querySelector("#repository-url");
       const installButton = document.querySelector("#install-atlas-repository");
       const installStatus = document.querySelector("#install-status");
+      const homeAssistantUrl = document.querySelector("#home-assistant-url");
+      const homeAssistantButton = document.querySelector("#open-home-assistant");
+      const homeAssistantStatus = document.querySelector("#home-assistant-status");
+      const presetButtons = Array.from(document.querySelectorAll("[data-ha-url]"));
       const copyButton = document.querySelector("#copy-repository-url");
       const copyStatus = document.querySelector("#copy-status");
       const developerLinks = document.querySelector("#developer-links");
@@ -228,6 +270,16 @@
       developerPanel.hidden = !showDeveloperLinks;
       developerNotice.hidden = !showDeveloperLinks;
 
+      function normalizeBaseUrl(value) {
+        return value.trim().replace(/\/+$/, "");
+      }
+
+      function buildHomeAssistantUrl() {
+        const baseUrl = normalizeBaseUrl(homeAssistantUrl.value);
+        const encodedRepository = encodeURIComponent("https://github.com/rockbaer2007/atlas-plugin-repository-demo");
+        return `${baseUrl}/hassio/addon_repositories?repository_url=${encodedRepository}`;
+      }
+
       async function copyRepositoryUrl(statusElement) {
         try {
           await navigator.clipboard.writeText(repositoryUrl.value);
@@ -238,8 +290,28 @@
         }
       }
 
+      presetButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          homeAssistantUrl.value = button.dataset.haUrl;
+          presetButtons.forEach((presetButton) => {
+            presetButton.setAttribute("aria-pressed", String(presetButton === button));
+          });
+        });
+      });
+
       installButton.addEventListener("click", () => {
         void copyRepositoryUrl(installStatus);
+      });
+
+      homeAssistantButton.addEventListener("click", () => {
+        const baseUrl = normalizeBaseUrl(homeAssistantUrl.value);
+        if (!baseUrl) {
+          homeAssistantStatus.textContent = "Bitte zuerst eine Home-Assistant-Adresse eintragen.";
+          return;
+        }
+
+        homeAssistantStatus.textContent = "Home Assistant wird mit der Repository-Vorgabe geoeffnet.";
+        window.location.href = buildHomeAssistantUrl();
       });
 
       copyButton.addEventListener("click", () => {
