@@ -90,6 +90,10 @@
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
 
+      [hidden] {
+        display: none;
+      }
+
       a.button,
       button {
         display: inline-flex;
@@ -172,6 +176,11 @@
         </p>
         <div class="actions">
           <a class="button" href="https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main/repository.json">
+            ATLAS Repository hinzufuegen
+          </a>
+        </div>
+        <div id="developer-links" class="actions developer-links" hidden>
+          <a class="button secondary" href="https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main/repository.json">
             repository.json oeffnen
           </a>
           <a class="button secondary" href="https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Frockbaer2007%2Fatlas-plugin-repository-demo">
@@ -180,7 +189,7 @@
         </div>
       </section>
 
-      <section class="panel">
+      <section id="developer-panel" class="panel" hidden>
         <h2>ATLAS Administration</h2>
         <p>
           Nutze diese URL in ATLAS Administration, um den Plugin-Repository-Workflow
@@ -193,7 +202,7 @@
         </div>
       </section>
 
-      <section class="panel notice">
+      <section id="developer-notice" class="panel notice" hidden>
         <h2>Einordnung</h2>
         <p>
           Das ist ein ATLAS Plugin-Test-Repository. Der Home-Assistant-Button
@@ -207,6 +216,14 @@
       const repositoryUrl = document.querySelector("#repository-url");
       const copyButton = document.querySelector("#copy-repository-url");
       const copyStatus = document.querySelector("#copy-status");
+      const developerLinks = document.querySelector("#developer-links");
+      const developerPanel = document.querySelector("#developer-panel");
+      const developerNotice = document.querySelector("#developer-notice");
+      const showDeveloperLinks = new URL(window.location.href).searchParams.get("debug") === "1";
+
+      developerLinks.hidden = !showDeveloperLinks;
+      developerPanel.hidden = !showDeveloperLinks;
+      developerNotice.hidden = !showDeveloperLinks;
 
       copyButton.addEventListener("click", async () => {
         try {
