@@ -82,7 +82,7 @@
 
       .actions,
       .copy-row,
-      .ha-target {
+      .steps {
         display: grid;
         gap: 8px;
       }
@@ -139,59 +139,15 @@
         font-size: 0.92rem;
       }
 
-      .manual-path {
-        display: grid;
-        gap: 6px;
+      .steps {
         margin: 0;
-        padding: 10px 12px;
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        background: color-mix(in srgb, var(--panel), var(--bg) 45%);
+        padding-left: 20px;
         color: var(--muted);
-        font-size: 0.9rem;
-        line-height: 1.45;
+        line-height: 1.55;
       }
 
-      .manual-path strong {
+      .steps strong {
         color: var(--text);
-      }
-
-      .preset-row {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-        gap: 8px;
-      }
-
-      .field-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(110px, 160px);
-        gap: 8px;
-      }
-
-      label {
-        display: grid;
-        gap: 5px;
-        color: var(--muted);
-        font-size: 0.82rem;
-        font-weight: 800;
-      }
-
-      .preset {
-        border-color: var(--border);
-        background: var(--panel);
-        color: var(--text);
-      }
-
-      .preset[aria-pressed="true"] {
-        border-color: var(--accent);
-        background: color-mix(in srgb, var(--accent), var(--panel) 78%);
-        color: var(--text);
-      }
-
-      @media (max-width: 620px) {
-        .field-grid {
-          grid-template-columns: 1fr;
-        }
       }
 
       .notice {
@@ -228,7 +184,7 @@
         <h1>Plugin-Repository testen</h1>
         <p>
           Diese Seite ist die ATLAS-Zwischenseite fuer das Demo-Repository.
-          Sie trennt den ATLAS-Plugin-Test vom optionalen Home-Assistant-App-Repository-Handoff.
+          Der Button kopiert die ATLAS-Repository-URL fuer die Administration.
         </p>
         <div class="actions">
           <button id="install-atlas-repository" type="button">
@@ -244,64 +200,29 @@
       </section>
 
       <section class="panel">
-        <h2>Home Assistant Ziel</h2>
-        <p>
-          Waehle deine Home-Assistant-Adresse. Der Button nutzt My Home Assistant,
-          weil direkte lokale Frontend-Pfade je nach Version 404 liefern koennen.
-        </p>
-        <div class="ha-target">
-          <div class="preset-row" role="group" aria-label="Home Assistant URL Vorgaben">
-            <button class="preset" type="button" data-ha-host="http://homeassistant.local" data-ha-port="" aria-pressed="true">
-              HA 2026.8+ / Port 80
-            </button>
-            <button class="preset" type="button" data-ha-host="http://homeassistant.local" data-ha-port="8123" aria-pressed="false">
-              Klassisch / Port 8123
-            </button>
-          </div>
-          <div class="field-grid">
-            <label>
-              Home Assistant Host
-              <input id="home-assistant-host" class="url-box" value="http://homeassistant.local">
-            </label>
-            <label>
-              Port
-              <input id="home-assistant-port" class="url-box" inputmode="numeric" pattern="[0-9]*" placeholder="80" aria-label="Home Assistant Port">
-            </label>
-          </div>
-          <button id="open-home-assistant" class="secondary" type="button">
-            In Home Assistant oeffnen
-          </button>
-          <output id="home-assistant-status" class="status" aria-live="polite"></output>
-          <div class="manual-path">
-            <strong>Fallback fuer den manuellen Test</strong>
-            <span id="home-assistant-manual-target"></span>
-            <span>Add-on Store oeffnen, Menue mit drei Punkten, Repositories, dann diese Repository-URL einfuegen:</span>
-            <input id="home-assistant-addon-repository-url" class="url-box" value="https://github.com/rockbaer2007/atlas-plugin-repository-demo" readonly>
-            <button id="copy-home-assistant-addon-repository-url" class="secondary" type="button">HA-Repository-URL kopieren</button>
-          </div>
-        </div>
-      </section>
-
-      <section id="developer-panel" class="panel" hidden>
         <h2>ATLAS Administration</h2>
         <p>
-          Nutze diese URL in ATLAS Administration, um den Plugin-Repository-Workflow
-          zu testen: Vorschau, Installation, Update und Entfernen.
+          Fuege die kopierte URL in ATLAS Administration ein, um Vorschau,
+          Installation, Update und Entfernen zu testen.
         </p>
         <div class="copy-row">
           <input id="repository-url" class="url-box" value="https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main/repository.json" readonly>
           <button id="copy-repository-url" type="button">Repository-URL kopieren</button>
           <output id="copy-status" class="status" aria-live="polite"></output>
         </div>
+        <ol class="steps">
+          <li><strong>ATLAS Administration</strong> oeffnen.</li>
+          <li><strong>ATLAS Repository hinzufuegen</strong> auswaehlen.</li>
+          <li>URL einfuegen, <strong>Repository pruefen</strong> und danach <strong>Hinzufuegen</strong>.</li>
+        </ol>
       </section>
 
       <section id="developer-notice" class="panel notice" hidden>
         <h2>Einordnung</h2>
         <p>
-          Das ist ein ATLAS Plugin-Test-Repository. Der Home-Assistant-Button
-          ist nur zum Testen der Handoff-Zwischenseite gedacht. Die eigentliche
-          ATLAS-Plugin-Installation erfolgt in ATLAS Administration ueber die
-          repository.json-URL.
+          Das ist ein ATLAS Plugin-Test-Repository. Home Assistant Add-on-Repos
+          gehoeren in Home Assistant, ATLAS Plugin-Repos gehoeren in ATLAS
+          Administration.
         </p>
       </section>
     </main>
@@ -309,70 +230,14 @@
       const repositoryUrl = document.querySelector("#repository-url");
       const installButton = document.querySelector("#install-atlas-repository");
       const installStatus = document.querySelector("#install-status");
-      const homeAssistantHost = document.querySelector("#home-assistant-host");
-      const homeAssistantPort = document.querySelector("#home-assistant-port");
-      const homeAssistantButton = document.querySelector("#open-home-assistant");
-      const homeAssistantStatus = document.querySelector("#home-assistant-status");
-      const homeAssistantManualTarget = document.querySelector("#home-assistant-manual-target");
-      const homeAssistantAddonRepositoryUrl = document.querySelector("#home-assistant-addon-repository-url");
-      const copyHomeAssistantAddonRepositoryButton = document.querySelector("#copy-home-assistant-addon-repository-url");
-      const presetButtons = Array.from(document.querySelectorAll("[data-ha-host]"));
       const copyButton = document.querySelector("#copy-repository-url");
       const copyStatus = document.querySelector("#copy-status");
       const developerLinks = document.querySelector("#developer-links");
-      const developerPanel = document.querySelector("#developer-panel");
       const developerNotice = document.querySelector("#developer-notice");
       const showDeveloperLinks = new URL(window.location.href).searchParams.get("debug") === "1";
 
       developerLinks.hidden = !showDeveloperLinks;
-      developerPanel.hidden = !showDeveloperLinks;
       developerNotice.hidden = !showDeveloperLinks;
-
-      function normalizeHost(value) {
-        const host = value.trim().replace(/\/+$/, "");
-        if (!host) {
-          return "";
-        }
-
-        return /^https?:\/\//i.test(host) ? host : `http://${host}`;
-      }
-
-      function normalizePort(value) {
-        const port = value.trim();
-        if (!port) {
-          return "";
-        }
-
-        const numericPort = Number(port);
-        return Number.isInteger(numericPort) && numericPort >= 1 && numericPort <= 65535 ? String(numericPort) : null;
-      }
-
-      function buildHomeAssistantOrigin() {
-        const host = normalizeHost(homeAssistantHost.value);
-        const port = normalizePort(homeAssistantPort.value);
-        if (!host || port === null) {
-          return null;
-        }
-
-        const baseUrl = new URL(host);
-        if (port) {
-          baseUrl.port = port;
-        }
-
-        return baseUrl.origin;
-      }
-
-      function buildMyHomeAssistantUrl() {
-        const encodedRepository = encodeURIComponent(homeAssistantAddonRepositoryUrl.value);
-        return `https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=${encodedRepository}`;
-      }
-
-      function updateManualTarget() {
-        const origin = buildHomeAssistantOrigin();
-        homeAssistantManualTarget.textContent = origin
-          ? `Gewaehlte Instanz: ${origin}`
-          : "Bitte eine gueltige Home-Assistant-Adresse eintragen.";
-      }
 
       async function copyRepositoryUrl(statusElement) {
         try {
@@ -384,50 +249,13 @@
         }
       }
 
-      presetButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          homeAssistantHost.value = button.dataset.haHost;
-          homeAssistantPort.value = button.dataset.haPort;
-          updateManualTarget();
-          presetButtons.forEach((presetButton) => {
-            presetButton.setAttribute("aria-pressed", String(presetButton === button));
-          });
-        });
-      });
-
-      homeAssistantHost.addEventListener("input", updateManualTarget);
-      homeAssistantPort.addEventListener("input", updateManualTarget);
-
       installButton.addEventListener("click", () => {
         void copyRepositoryUrl(installStatus);
-      });
-
-      homeAssistantButton.addEventListener("click", () => {
-        const homeAssistantOrigin = buildHomeAssistantOrigin();
-        if (!homeAssistantOrigin) {
-          homeAssistantStatus.textContent = "Bitte Home-Assistant-Adresse und einen gueltigen Port eintragen.";
-          return;
-        }
-
-        homeAssistantStatus.textContent = `My Home Assistant wird geoeffnet. Falls die Instanz dort abweicht: ${homeAssistantOrigin} verwenden.`;
-        window.location.href = buildMyHomeAssistantUrl();
       });
 
       copyButton.addEventListener("click", () => {
         void copyRepositoryUrl(copyStatus);
       });
-
-      copyHomeAssistantAddonRepositoryButton.addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText(homeAssistantAddonRepositoryUrl.value);
-          homeAssistantStatus.textContent = "HA-Repository-URL kopiert. Im Add-on Store unter Repositories einfuegen.";
-        } catch {
-          homeAssistantAddonRepositoryUrl.select();
-          homeAssistantStatus.textContent = "Kopieren nicht moeglich. HA-Repository-URL ist markiert.";
-        }
-      });
-
-      updateManualTarget();
     </script>
   </body>
 </html>
