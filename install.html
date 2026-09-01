@@ -175,10 +175,11 @@
           Sie trennt den ATLAS-Plugin-Test vom optionalen Home-Assistant-App-Repository-Handoff.
         </p>
         <div class="actions">
-          <a class="button" href="https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main/repository.json">
+          <button id="install-atlas-repository" type="button">
             ATLAS Repository hinzufuegen
-          </a>
+          </button>
         </div>
+        <output id="install-status" class="status" aria-live="polite"></output>
         <div id="developer-links" class="actions developer-links" hidden>
           <a class="button secondary" href="https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main/repository.json">
             repository.json oeffnen
@@ -214,6 +215,8 @@
     </main>
     <script>
       const repositoryUrl = document.querySelector("#repository-url");
+      const installButton = document.querySelector("#install-atlas-repository");
+      const installStatus = document.querySelector("#install-status");
       const copyButton = document.querySelector("#copy-repository-url");
       const copyStatus = document.querySelector("#copy-status");
       const developerLinks = document.querySelector("#developer-links");
@@ -225,14 +228,22 @@
       developerPanel.hidden = !showDeveloperLinks;
       developerNotice.hidden = !showDeveloperLinks;
 
-      copyButton.addEventListener("click", async () => {
+      async function copyRepositoryUrl(statusElement) {
         try {
           await navigator.clipboard.writeText(repositoryUrl.value);
-          copyStatus.textContent = "Repository-URL kopiert.";
+          statusElement.textContent = "Repository-URL kopiert. In ATLAS Administration als Repository einfuegen.";
         } catch {
           repositoryUrl.select();
-          copyStatus.textContent = "Kopieren nicht moeglich. URL ist markiert.";
+          statusElement.textContent = "Kopieren nicht moeglich. Repository-URL ist unten markiert.";
         }
+      }
+
+      installButton.addEventListener("click", () => {
+        void copyRepositoryUrl(installStatus);
+      });
+
+      copyButton.addEventListener("click", () => {
+        void copyRepositoryUrl(copyStatus);
       });
     </script>
   </body>
