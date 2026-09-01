@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ATLAS Plugin Repository Demo installieren</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #eef4f6;
+        --panel: #ffffff;
+        --text: #132432;
+        --muted: #607485;
+        --border: #ccd9df;
+        --accent: #0f8f83;
+        --accent-strong: #0b6f66;
+        --warn: #c58a00;
+        --shadow: rgb(15 23 42 / 14%);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      main {
+        width: min(920px, calc(100vw - 32px));
+        margin: 0 auto;
+        padding: 32px 0;
+      }
+
+      .hero,
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: 0 18px 54px var(--shadow);
+      }
+
+      .hero {
+        display: grid;
+        gap: 18px;
+        padding: 28px;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 3.8rem);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        font-size: 1.1rem;
+      }
+
+      p {
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .actions,
+      .copy-row {
+        display: grid;
+        gap: 8px;
+      }
+
+      .actions {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      a.button,
+      button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border: 1px solid var(--accent);
+        border-radius: 6px;
+        background: var(--accent);
+        color: #ffffff;
+        padding: 9px 14px;
+        font: inherit;
+        font-weight: 800;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      a.button.secondary,
+      button.secondary {
+        border-color: var(--border);
+        background: var(--panel);
+        color: var(--text);
+      }
+
+      .panel {
+        display: grid;
+        gap: 12px;
+        margin-top: 14px;
+        padding: 18px;
+      }
+
+      .url-box {
+        width: 100%;
+        min-height: 42px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: color-mix(in srgb, var(--panel), var(--bg) 35%);
+        color: var(--text);
+        padding: 10px 12px;
+        font: inherit;
+        font-size: 0.92rem;
+      }
+
+      .notice {
+        border-left: 4px solid var(--warn);
+        padding-left: 12px;
+      }
+
+      .status {
+        min-height: 20px;
+        color: var(--accent);
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0e1214;
+          --panel: #171d20;
+          --text: #f4f8fa;
+          --muted: #a9bac4;
+          --border: #303c42;
+          --accent: #2dd4bf;
+          --accent-strong: #14b8a6;
+          --warn: #facc15;
+          --shadow: rgb(0 0 0 / 40%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">ATLAS Plugin Repository Demo</p>
+        <h1>Plugin-Repository testen</h1>
+        <p>
+          Diese Seite ist die ATLAS-Zwischenseite fuer das Demo-Repository.
+          Sie trennt den ATLAS-Plugin-Test vom optionalen Home-Assistant-App-Repository-Handoff.
+        </p>
+        <div class="actions">
+          <a class="button" href="https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main/repository.json">
+            repository.json oeffnen
+          </a>
+          <a class="button secondary" href="https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Frockbaer2007%2Fatlas-plugin-repository-demo">
+            Optional in Home Assistant oeffnen
+          </a>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>ATLAS Administration</h2>
+        <p>
+          Nutze diese URL in ATLAS Administration, um den Plugin-Repository-Workflow
+          zu testen: Vorschau, Installation, Update und Entfernen.
+        </p>
+        <div class="copy-row">
+          <input id="repository-url" class="url-box" value="https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main/repository.json" readonly>
+          <button id="copy-repository-url" type="button">Repository-URL kopieren</button>
+          <output id="copy-status" class="status" aria-live="polite"></output>
+        </div>
+      </section>
+
+      <section class="panel notice">
+        <h2>Einordnung</h2>
+        <p>
+          Das ist ein ATLAS Plugin-Test-Repository. Der Home-Assistant-Button
+          ist nur zum Testen der Handoff-Zwischenseite gedacht. Die eigentliche
+          ATLAS-Plugin-Installation erfolgt in ATLAS Administration ueber die
+          repository.json-URL.
+        </p>
+      </section>
+    </main>
+    <script>
+      const repositoryUrl = document.querySelector("#repository-url");
+      const copyButton = document.querySelector("#copy-repository-url");
+      const copyStatus = document.querySelector("#copy-status");
+
+      copyButton.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(repositoryUrl.value);
+          copyStatus.textContent = "Repository-URL kopiert.";
+        } catch {
+          repositoryUrl.select();
+          copyStatus.textContent = "Kopieren nicht moeglich. URL ist markiert.";
+        }
+      });
+    </script>
+  </body>
+</html>

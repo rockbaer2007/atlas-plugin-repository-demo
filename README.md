@@ -10,13 +10,13 @@ Use this URL in ATLAS Administration:
 https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main/repository.json
 ```
 
-Test the Home Assistant add-on repository handoff:
+Open the ATLAS install test page:
 
-[![Open your Home Assistant instance and add this repository.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Frockbaer2007%2Fatlas-plugin-repository-demo)
+[![Open the ATLAS Plugin Repository install test page.](https://img.shields.io/badge/ATLAS-Install%20Test-0f8f83?style=for-the-badge)](https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html)
 
-The button opens the My Home Assistant handoff page with the repository URL
-pre-filled. It is meant for testing the handoff flow; ATLAS plugin installation
-continues to use the `repository.json` URL above.
+The page explains the ATLAS repository flow, provides the `repository.json` URL
+for Administration and keeps the optional My Home Assistant add-on repository
+handoff as a separate test action.
 
 ## Contents
 
