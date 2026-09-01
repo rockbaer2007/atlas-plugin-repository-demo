@@ -32,7 +32,7 @@ URL for Administration.
 <p>
   <strong>ATLAS File Studio</strong><br>
   Plugin ID: <code>atlas.plugin.file-studio</code><br>
-  Version: <code>0.1.3</code>
+  Version: <code>0.1.4</code>
 </p>
 
 ## Contents
