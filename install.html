@@ -145,6 +145,20 @@
         gap: 8px;
       }
 
+      .field-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(110px, 160px);
+        gap: 8px;
+      }
+
+      label {
+        display: grid;
+        gap: 5px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 800;
+      }
+
       .preset {
         border-color: var(--border);
         background: var(--panel);
@@ -155,6 +169,12 @@
         border-color: var(--accent);
         background: color-mix(in srgb, var(--accent), var(--panel) 78%);
         color: var(--text);
+      }
+
+      @media (max-width: 620px) {
+        .field-grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       .notice {
@@ -213,14 +233,23 @@
         </p>
         <div class="ha-target">
           <div class="preset-row" role="group" aria-label="Home Assistant URL Vorgaben">
-            <button class="preset" type="button" data-ha-url="http://homeassistant.local" aria-pressed="true">
+            <button class="preset" type="button" data-ha-host="http://homeassistant.local" data-ha-port="" aria-pressed="true">
               HA 2026.8+ / Port 80
             </button>
-            <button class="preset" type="button" data-ha-url="http://homeassistant.local:8123" aria-pressed="false">
+            <button class="preset" type="button" data-ha-host="http://homeassistant.local" data-ha-port="8123" aria-pressed="false">
               Klassisch / Port 8123
             </button>
           </div>
-          <input id="home-assistant-url" class="url-box" value="http://homeassistant.local">
+          <div class="field-grid">
+            <label>
+              Home Assistant Host
+              <input id="home-assistant-host" class="url-box" value="http://homeassistant.local">
+            </label>
+            <label>
+              Port
+              <input id="home-assistant-port" class="url-box" inputmode="numeric" pattern="[0-9]*" placeholder="80" aria-label="Home Assistant Port">
+            </label>
+          </div>
           <button id="open-home-assistant" class="secondary" type="button">
             In Home Assistant oeffnen
           </button>
@@ -255,10 +284,11 @@
       const repositoryUrl = document.querySelector("#repository-url");
       const installButton = document.querySelector("#install-atlas-repository");
       const installStatus = document.querySelector("#install-status");
-      const homeAssistantUrl = document.querySelector("#home-assistant-url");
+      const homeAssistantHost = document.querySelector("#home-assistant-host");
+      const homeAssistantPort = document.querySelector("#home-assistant-port");
       const homeAssistantButton = document.querySelector("#open-home-assistant");
       const homeAssistantStatus = document.querySelector("#home-assistant-status");
-      const presetButtons = Array.from(document.querySelectorAll("[data-ha-url]"));
+      const presetButtons = Array.from(document.querySelectorAll("[data-ha-host]"));
       const copyButton = document.querySelector("#copy-repository-url");
       const copyStatus = document.querySelector("#copy-status");
       const developerLinks = document.querySelector("#developer-links");
@@ -270,14 +300,39 @@
       developerPanel.hidden = !showDeveloperLinks;
       developerNotice.hidden = !showDeveloperLinks;
 
-      function normalizeBaseUrl(value) {
-        return value.trim().replace(/\/+$/, "");
+      function normalizeHost(value) {
+        const host = value.trim().replace(/\/+$/, "");
+        if (!host) {
+          return "";
+        }
+
+        return /^https?:\/\//i.test(host) ? host : `http://${host}`;
+      }
+
+      function normalizePort(value) {
+        const port = value.trim();
+        if (!port) {
+          return "";
+        }
+
+        const numericPort = Number(port);
+        return Number.isInteger(numericPort) && numericPort >= 1 && numericPort <= 65535 ? String(numericPort) : null;
       }
 
       function buildHomeAssistantUrl() {
-        const baseUrl = normalizeBaseUrl(homeAssistantUrl.value);
+        const host = normalizeHost(homeAssistantHost.value);
+        const port = normalizePort(homeAssistantPort.value);
+        if (!host || port === null) {
+          return null;
+        }
+
+        const baseUrl = new URL(host);
+        if (port) {
+          baseUrl.port = port;
+        }
+
         const encodedRepository = encodeURIComponent("https://github.com/rockbaer2007/atlas-plugin-repository-demo");
-        return `${baseUrl}/hassio/addon_repositories?repository_url=${encodedRepository}`;
+        return `${baseUrl.origin}/hassio/addon_repositories?repository_url=${encodedRepository}`;
       }
 
       async function copyRepositoryUrl(statusElement) {
@@ -292,7 +347,8 @@
 
       presetButtons.forEach((button) => {
         button.addEventListener("click", () => {
-          homeAssistantUrl.value = button.dataset.haUrl;
+          homeAssistantHost.value = button.dataset.haHost;
+          homeAssistantPort.value = button.dataset.haPort;
           presetButtons.forEach((presetButton) => {
             presetButton.setAttribute("aria-pressed", String(presetButton === button));
           });
@@ -304,14 +360,14 @@
       });
 
       homeAssistantButton.addEventListener("click", () => {
-        const baseUrl = normalizeBaseUrl(homeAssistantUrl.value);
-        if (!baseUrl) {
-          homeAssistantStatus.textContent = "Bitte zuerst eine Home-Assistant-Adresse eintragen.";
+        const homeAssistantTarget = buildHomeAssistantUrl();
+        if (!homeAssistantTarget) {
+          homeAssistantStatus.textContent = "Bitte Home-Assistant-Adresse und einen gueltigen Port eintragen.";
           return;
         }
 
         homeAssistantStatus.textContent = "Home Assistant wird mit der Repository-Vorgabe geoeffnet.";
-        window.location.href = buildHomeAssistantUrl();
+        window.location.href = homeAssistantTarget;
       });
 
       copyButton.addEventListener("click", () => {

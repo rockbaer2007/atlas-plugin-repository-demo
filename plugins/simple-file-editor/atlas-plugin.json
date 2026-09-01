@@ -1,7 +1,7 @@
 {
   "id": "atlas.demo.simple-file-editor",
   "name": "ATLAS Simple File Editor",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Demo plugin for testing ATLAS repository install, update and removal.",
   "homepage": "https://github.com/rockbaer2007/atlas-plugin-repository-demo/tree/main/plugins/simple-file-editor",
   "installPage": "https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html",
