@@ -33,6 +33,13 @@ plugins/
     README.md
 ```
 
+The demo catalog also links to the independent ATLAS File Studio plugin
+repository:
+
+```text
+https://github.com/rockbaer2007/atlas-file-studio-plugin
+```
+
 ## Purpose
 
 This repository is the first public reference for:
@@ -40,6 +47,7 @@ This repository is the first public reference for:
 - the `repository.json` catalog format
 - plugin icon, logo and preview metadata
 - package install/update/remove testing
+- a second real plugin entry through ATLAS File Studio
 - a future reusable ATLAS plugin template
 
 The demo plugin is metadata-only in the first Administration preview and does
