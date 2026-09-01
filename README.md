@@ -2,9 +2,9 @@
 
 Public demo repository for testing the ATLAS plugin repository workflow.
 
-[![Open the ATLAS Plugin Repository install test page.](https://img.shields.io/badge/ATLAS-Install%20Test-0f8f83?style=for-the-badge)](https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html)
+[![Open the ATLAS Plugin Repository install test page.](https://img.shields.io/badge/ATLAS-Install%20Test-0f8f83?style=for-the-badge)](https://raw.githack.com/rockbaer2007/atlas-plugin-repository-demo/main/install.html)
 
-[![ATLAS Repository hinzufuegen](assets/atlas-repository-button.svg)](https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html)
+[![ATLAS Repository hinzufuegen](assets/atlas-repository-button.svg)](https://raw.githack.com/rockbaer2007/atlas-plugin-repository-demo/main/install.html)
 
 ## Repository URL
 
