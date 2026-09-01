@@ -5,7 +5,7 @@
     "schemaVersion": 1
   },
   "name": "ATLAS Plugin Demo Repository",
-  "version": "28",
+  "version": "29",
   "homepage": "https://github.com/rockbaer2007/atlas-plugin-repository-demo",
   "installPage": "https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html",
   "homeAssistantRepositoryUrl": "https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Frockbaer2007%2Fatlas-plugin-repository-demo",
@@ -49,7 +49,7 @@
         "de": "ATLAS File Studio",
         "en": "ATLAS File Studio"
       },
-      "version": "0.1.13",
+      "version": "0.1.14",
       "description": "Scoped file tree and editor plugin for Home Assistant configuration files.",
       "descriptionI18n": {
         "de": "Abgesichertes Dateibaum- und Editor-Plugin für Home-Assistant-Konfigurationsdateien.",
