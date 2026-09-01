@@ -139,6 +139,23 @@
         font-size: 0.92rem;
       }
 
+      .manual-path {
+        display: grid;
+        gap: 6px;
+        margin: 0;
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: color-mix(in srgb, var(--panel), var(--bg) 45%);
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.45;
+      }
+
+      .manual-path strong {
+        color: var(--text);
+      }
+
       .preset-row {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
@@ -229,7 +246,8 @@
       <section class="panel">
         <h2>Home Assistant Ziel</h2>
         <p>
-          Waehle die passende Home-Assistant-Adresse aus oder passe sie manuell an.
+          Waehle deine Home-Assistant-Adresse. Der Button nutzt My Home Assistant,
+          weil direkte lokale Frontend-Pfade je nach Version 404 liefern koennen.
         </p>
         <div class="ha-target">
           <div class="preset-row" role="group" aria-label="Home Assistant URL Vorgaben">
@@ -254,6 +272,13 @@
             In Home Assistant oeffnen
           </button>
           <output id="home-assistant-status" class="status" aria-live="polite"></output>
+          <div class="manual-path">
+            <strong>Fallback fuer den manuellen Test</strong>
+            <span id="home-assistant-manual-target"></span>
+            <span>Add-on Store oeffnen, Menue mit drei Punkten, Repositories, dann diese Repository-URL einfuegen:</span>
+            <input id="home-assistant-addon-repository-url" class="url-box" value="https://github.com/rockbaer2007/atlas-plugin-repository-demo" readonly>
+            <button id="copy-home-assistant-addon-repository-url" class="secondary" type="button">HA-Repository-URL kopieren</button>
+          </div>
         </div>
       </section>
 
@@ -288,6 +313,9 @@
       const homeAssistantPort = document.querySelector("#home-assistant-port");
       const homeAssistantButton = document.querySelector("#open-home-assistant");
       const homeAssistantStatus = document.querySelector("#home-assistant-status");
+      const homeAssistantManualTarget = document.querySelector("#home-assistant-manual-target");
+      const homeAssistantAddonRepositoryUrl = document.querySelector("#home-assistant-addon-repository-url");
+      const copyHomeAssistantAddonRepositoryButton = document.querySelector("#copy-home-assistant-addon-repository-url");
       const presetButtons = Array.from(document.querySelectorAll("[data-ha-host]"));
       const copyButton = document.querySelector("#copy-repository-url");
       const copyStatus = document.querySelector("#copy-status");
@@ -319,7 +347,7 @@
         return Number.isInteger(numericPort) && numericPort >= 1 && numericPort <= 65535 ? String(numericPort) : null;
       }
 
-      function buildHomeAssistantUrl() {
+      function buildHomeAssistantOrigin() {
         const host = normalizeHost(homeAssistantHost.value);
         const port = normalizePort(homeAssistantPort.value);
         if (!host || port === null) {
@@ -331,8 +359,19 @@
           baseUrl.port = port;
         }
 
-        const encodedRepository = encodeURIComponent("https://github.com/rockbaer2007/atlas-plugin-repository-demo");
-        return `${baseUrl.origin}/hassio/addon_repositories?repository_url=${encodedRepository}`;
+        return baseUrl.origin;
+      }
+
+      function buildMyHomeAssistantUrl() {
+        const encodedRepository = encodeURIComponent(homeAssistantAddonRepositoryUrl.value);
+        return `https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=${encodedRepository}`;
+      }
+
+      function updateManualTarget() {
+        const origin = buildHomeAssistantOrigin();
+        homeAssistantManualTarget.textContent = origin
+          ? `Gewaehlte Instanz: ${origin}`
+          : "Bitte eine gueltige Home-Assistant-Adresse eintragen.";
       }
 
       async function copyRepositoryUrl(statusElement) {
@@ -349,30 +388,46 @@
         button.addEventListener("click", () => {
           homeAssistantHost.value = button.dataset.haHost;
           homeAssistantPort.value = button.dataset.haPort;
+          updateManualTarget();
           presetButtons.forEach((presetButton) => {
             presetButton.setAttribute("aria-pressed", String(presetButton === button));
           });
         });
       });
 
+      homeAssistantHost.addEventListener("input", updateManualTarget);
+      homeAssistantPort.addEventListener("input", updateManualTarget);
+
       installButton.addEventListener("click", () => {
         void copyRepositoryUrl(installStatus);
       });
 
       homeAssistantButton.addEventListener("click", () => {
-        const homeAssistantTarget = buildHomeAssistantUrl();
-        if (!homeAssistantTarget) {
+        const homeAssistantOrigin = buildHomeAssistantOrigin();
+        if (!homeAssistantOrigin) {
           homeAssistantStatus.textContent = "Bitte Home-Assistant-Adresse und einen gueltigen Port eintragen.";
           return;
         }
 
-        homeAssistantStatus.textContent = "Home Assistant wird mit der Repository-Vorgabe geoeffnet.";
-        window.location.href = homeAssistantTarget;
+        homeAssistantStatus.textContent = `My Home Assistant wird geoeffnet. Falls die Instanz dort abweicht: ${homeAssistantOrigin} verwenden.`;
+        window.location.href = buildMyHomeAssistantUrl();
       });
 
       copyButton.addEventListener("click", () => {
         void copyRepositoryUrl(copyStatus);
       });
+
+      copyHomeAssistantAddonRepositoryButton.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(homeAssistantAddonRepositoryUrl.value);
+          homeAssistantStatus.textContent = "HA-Repository-URL kopiert. Im Add-on Store unter Repositories einfuegen.";
+        } catch {
+          homeAssistantAddonRepositoryUrl.select();
+          homeAssistantStatus.textContent = "Kopieren nicht moeglich. HA-Repository-URL ist markiert.";
+        }
+      });
+
+      updateManualTarget();
     </script>
   </body>
 </html>
