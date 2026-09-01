@@ -4,6 +4,8 @@
 
 [![ATLAS Repository hinzufügen](../../assets/atlas-repository-button.svg)](https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html)
 
+<img src="icon.svg" alt="ATLAS Simple File Editor icon" width="96" height="96">
+
 Demo plugin for the ATLAS plugin repository workflow.
 
 This plugin is intentionally metadata-only for the first repository tests. It is

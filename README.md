@@ -17,6 +17,24 @@ https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main
 The page explains the ATLAS repository flow and copies the `repository.json`
 URL for Administration.
 
+## Plugins
+
+<img src="plugins/simple-file-editor/icon.svg" alt="ATLAS Simple File Editor icon" width="72" height="72">
+
+<p>
+  <strong>ATLAS Simple File Editor</strong><br>
+  Plugin ID: <code>atlas.demo.simple-file-editor</code><br>
+  Version: <code>0.1.14</code>
+</p>
+
+<img src="https://raw.githubusercontent.com/rockbaer2007/atlas-file-studio-plugin/main/plugins/file-studio/icon.svg" alt="ATLAS File Studio icon" width="72" height="72">
+
+<p>
+  <strong>ATLAS File Studio</strong><br>
+  Plugin ID: <code>atlas.plugin.file-studio</code><br>
+  Version: <code>0.1.3</code>
+</p>
+
 ## Contents
 
 ```text
