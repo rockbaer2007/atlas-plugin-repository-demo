@@ -183,37 +183,31 @@
         <p class="eyebrow">ATLAS Plugin Repository Demo</p>
         <h1>Plugin-Repository testen</h1>
         <p>
-          Diese Seite ist die ATLAS-Zwischenseite fuer das Demo-Repository.
-          Der Button kopiert die ATLAS-Repository-URL fuer die Administration.
+          Diese Seite ist die ATLAS-Zwischenseite für das Demo-Repository.
+          Der Button kopiert die ATLAS-Repository-URL für die Administration.
         </p>
         <div class="actions">
           <button id="install-atlas-repository" type="button">
-            ATLAS Repository hinzufuegen
+            ATLAS Repository hinzufügen
           </button>
         </div>
         <output id="install-status" class="status" aria-live="polite"></output>
-        <div id="developer-links" class="actions developer-links" hidden>
-          <a class="button secondary" href="https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main/repository.json">
-            repository.json oeffnen
-          </a>
-        </div>
       </section>
 
       <section class="panel">
         <h2>ATLAS Administration</h2>
         <p>
-          Fuege die kopierte URL in ATLAS Administration ein, um Vorschau,
+          Füge die kopierte URL in ATLAS Administration ein, um Vorschau,
           Installation, Update und Entfernen zu testen.
         </p>
         <div class="copy-row">
           <input id="repository-url" class="url-box" value="https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main/repository.json" readonly>
-          <button id="copy-repository-url" type="button">Repository-URL kopieren</button>
           <output id="copy-status" class="status" aria-live="polite"></output>
         </div>
         <ol class="steps">
-          <li><strong>ATLAS Administration</strong> oeffnen.</li>
-          <li><strong>ATLAS Repository hinzufuegen</strong> auswaehlen.</li>
-          <li>URL einfuegen, <strong>Repository pruefen</strong> und danach <strong>Hinzufuegen</strong>.</li>
+          <li><strong>ATLAS Administration</strong> öffnen.</li>
+          <li><strong>ATLAS Repository hinzufügen</strong> auswählen.</li>
+          <li>URL einfügen, <strong>Repository prüfen</strong> und danach <strong>Hinzufügen</strong>.</li>
         </ol>
       </section>
 
@@ -221,7 +215,7 @@
         <h2>Einordnung</h2>
         <p>
           Das ist ein ATLAS Plugin-Test-Repository. Home Assistant Add-on-Repos
-          gehoeren in Home Assistant, ATLAS Plugin-Repos gehoeren in ATLAS
+          gehören in Home Assistant, ATLAS Plugin-Repos gehören in ATLAS
           Administration.
         </p>
       </section>
@@ -230,22 +224,19 @@
       const repositoryUrl = document.querySelector("#repository-url");
       const installButton = document.querySelector("#install-atlas-repository");
       const installStatus = document.querySelector("#install-status");
-      const copyButton = document.querySelector("#copy-repository-url");
       const copyStatus = document.querySelector("#copy-status");
-      const developerLinks = document.querySelector("#developer-links");
       const developerNotice = document.querySelector("#developer-notice");
       const showDeveloperLinks = new URL(window.location.href).searchParams.get("debug") === "1";
 
-      developerLinks.hidden = !showDeveloperLinks;
       developerNotice.hidden = !showDeveloperLinks;
 
       async function copyRepositoryUrl(statusElement) {
         try {
           await navigator.clipboard.writeText(repositoryUrl.value);
-          statusElement.textContent = "Repository-URL kopiert. In ATLAS Administration als Repository einfuegen.";
+          statusElement.textContent = "Repository-URL kopiert. In ATLAS Administration als Repository einfügen.";
         } catch {
           repositoryUrl.select();
-          statusElement.textContent = "Kopieren nicht moeglich. Repository-URL ist unten markiert.";
+          statusElement.textContent = "Kopieren nicht möglich. Repository-URL ist unten markiert.";
         }
       }
 
@@ -253,8 +244,9 @@
         void copyRepositoryUrl(installStatus);
       });
 
-      copyButton.addEventListener("click", () => {
-        void copyRepositoryUrl(copyStatus);
+      repositoryUrl.addEventListener("click", () => {
+        repositoryUrl.select();
+        copyStatus.textContent = "Repository-URL markiert.";
       });
     </script>
   </body>

@@ -4,7 +4,7 @@ Public demo repository for testing the ATLAS plugin repository workflow.
 
 [![Open the ATLAS Plugin Repository install test page.](https://img.shields.io/badge/ATLAS-Install%20Test-0f8f83?style=for-the-badge)](https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html)
 
-[![ATLAS Repository hinzufuegen](assets/atlas-repository-button.svg)](https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html)
+[![ATLAS Repository hinzufügen](assets/atlas-repository-button.svg)](https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html)
 
 ## Repository URL
 
@@ -14,9 +14,8 @@ Use this URL in ATLAS Administration:
 https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main/repository.json
 ```
 
-The page explains the ATLAS repository flow, provides the `repository.json` URL
-for Administration and keeps the optional My Home Assistant add-on repository
-handoff as a separate test action.
+The page explains the ATLAS repository flow and copies the `repository.json`
+URL for Administration.
 
 ## Contents
 

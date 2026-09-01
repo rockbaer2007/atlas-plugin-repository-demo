@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="482" height="67" viewBox="0 0 482 67" role="img" aria-labelledby="title desc">
-  <title id="title">ATLAS Repository hinzufuegen</title>
-  <desc id="desc">Button zum Oeffnen des ATLAS Plugin Repository Demo Repositories in Home Assistant.</desc>
+  <title id="title">ATLAS Repository hinzufügen</title>
+  <desc id="desc">Button zum Kopieren des ATLAS Plugin Repository Demo Repositories für ATLAS Administration.</desc>
   <defs>
     <linearGradient id="button-fill" x1="0" y1="0" x2="482" y2="67" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#087f91"/>
@@ -14,7 +14,7 @@
     <rect x="2" y="0" width="478" height="62" rx="31" fill="url(#button-fill)"/>
     <rect x="354" y="12" width="104" height="38" rx="19" fill="#092633"/>
     <text x="29" y="40" fill="#ffffff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="0">
-      ATLAS REPOSITORY HINZUFUEGEN
+      ATLAS REPOSITORY HINZUFÜGEN
     </text>
     <text x="368" y="38" fill="#ffffff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="0">
       ATLAS
