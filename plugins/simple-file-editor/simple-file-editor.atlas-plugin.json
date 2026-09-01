@@ -4,10 +4,11 @@
   "plugin": {
     "id": "atlas.demo.simple-file-editor",
     "name": "ATLAS Simple File Editor",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Demo plugin for testing ATLAS repository install, update and removal.",
     "homepage": "https://github.com/rockbaer2007/atlas-plugin-repository-demo/tree/main/plugins/simple-file-editor",
     "installPage": "https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html",
+    "homeAssistantRepositoryUrl": "https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Frockbaer2007%2Fatlas-plugin-repository-demo",
     "icon": "icon.svg",
     "logo": "logo.svg",
     "preview": "preview.svg",
@@ -24,7 +25,7 @@
     {
       "path": "README.md",
       "mediaType": "text/markdown",
-      "content": "# ATLAS Simple File Editor\n\n[![Open the ATLAS Plugin Repository install test page.](https://img.shields.io/badge/ATLAS-Install%20Test-0f8f83?style=for-the-badge)](https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html)\n\nDemo package for ATLAS repository install, update and removal tests.\n\nThis package is metadata-only in the first Administration preview. It does not execute plugin code yet.\n"
+      "content": "# ATLAS Simple File Editor\n\n[![Open the ATLAS Plugin Repository install test page.](https://img.shields.io/badge/ATLAS-Install%20Test-0f8f83?style=for-the-badge)](https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html)\n[![Open this repository in Home Assistant.](https://img.shields.io/badge/Home%20Assistant-Repository%20oeffnen-03a9f4?style=for-the-badge)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Frockbaer2007%2Fatlas-plugin-repository-demo)\n\nDemo package for ATLAS repository install, update and removal tests.\n\nThis package is metadata-only in the first Administration preview. It does not execute plugin code yet.\n"
     }
   ]
 }
