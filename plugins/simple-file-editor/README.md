@@ -1,5 +1,7 @@
 # ATLAS Simple File Editor
 
+[![Open the ATLAS Plugin Repository install test page.](https://img.shields.io/badge/ATLAS-Install%20Test-0f8f83?style=for-the-badge)](https://rockbaer2007.github.io/atlas-plugin-repository-demo/install.html)
+
 Demo plugin for the ATLAS plugin repository workflow.
 
 This plugin is intentionally metadata-only for the first repository tests. It is
