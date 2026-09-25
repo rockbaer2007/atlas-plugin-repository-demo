@@ -17,6 +17,12 @@ https://raw.githubusercontent.com/rockbaer2007/atlas-plugin-repository-demo/main
 The page explains the ATLAS repository flow and copies the `repository.json`
 URL for Administration.
 
+## Create your own plugin repository
+
+Use the [ATLAS Plugin Template](https://github.com/rockbaer2007/atlas-plugin-template)
+to start a separate plugin repository. It includes a working example plugin,
+package builder, validation and CI checks.
+
 ## Plugins
 
 <img src="plugins/simple-file-editor/icon.svg" alt="ATLAS Simple File Editor icon" width="72" height="72">
@@ -66,7 +72,7 @@ This repository is the first public reference for:
 - plugin icon, logo and preview metadata
 - package install/update/remove testing
 - a second real plugin entry through ATLAS File Studio
-- a future reusable ATLAS plugin template
+- the official reusable ATLAS plugin template is maintained separately
 
 The demo plugin is metadata-only in the first Administration preview and does
 not execute plugin code yet.
